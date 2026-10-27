@@ -336,41 +336,36 @@
         </div>
     </div>
 
-          <script>
-    // உங்கள் Google Apps Script-இன் Web App URL-ஐ இங்கே கொடுக்கவும்
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbxrH08z1o6aU1rM8kM1hrfkZZl4ndO7PUEs22sJBAFfljv9YpTs5-aQMb19_cjzT9Wk3w/exec';
+    <script>
+        // Google Drive ஆட்டோ-பெட்ச் லிங்க்
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbxrH08z1o6aU1rM8kM1hrfkZZl4ndO7PUEs22sJBAFfljv9YpTs5-aQMb19_cjzT9Wk3w/exec';
 
-    let wallpapers = [];
-    let currentImgIdx = 0;
-    const bgContainer = document.getElementById('bgContainer');
+        let wallpapers = [];
+        let currentImgIdx = 0;
+        const bgContainer = document.getElementById('bgContainer');
 
-    // Google Drive ஃபோல்டரிலிருந்து ஆட்டோமேட்டிக்காக போட்டோக்களை எடுக்கும் பங்க்ஷன்
-    async function fetchDriveWallpapers() {
-        try {
-            const response = await fetch(scriptURL);
-            const data = await response.json();
-            if (data && data.length > 0) {
-                wallpapers = data;
-                changeBackground();
+        async function fetchDriveWallpapers() {
+            try {
+                const response = await fetch(scriptURL);
+                const data = await response.json();
+                if (data && data.length > 0) {
+                    wallpapers = data;
+                    changeBackground();
+                }
+            } catch (error) {
+                console.error('Error fetching wallpapers:', error);
+                wallpapers = ['https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=1920&auto=format&fit=crop&q=80'];
             }
-        } catch (error) {
-            console.error('Error fetching wallpapers:', error);
-            // ஒருவேளை நெட்வொர்க் எரர் என்றால் டீஃபால்ட் போட்டோ இருக்கும்
-            wallpapers = ['https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=1920&auto=format&fit=crop&q=80'];
         }
-    }
 
-    function changeBackground() {
-        if (wallpapers.length === 0) return;
-        bgContainer.style.backgroundImage = `url('${wallpapers[currentImgIdx]}')`;
-        currentImgIdx = (currentImgIdx + 1) % wallpapers.length;
-    }
+        function changeBackground() {
+            if (wallpapers.length === 0) return;
+            bgContainer.style.backgroundImage = `url('${wallpapers[currentImgIdx]}')`;
+            currentImgIdx = (currentImgIdx + 1) % wallpapers.length;
+        }
 
-    // ஆப் ஓபன் ஆனதும் டிரைவ் போட்டோக்களை லோட் செய்யும்
-    fetchDriveWallpapers();
-    // ஒவ்வொரு 10 விநாக்களுக்கும் போட்டோ மாறும்
-    setInterval(changeBackground, 10000);
-</script>
+        fetchDriveWallpapers();
+        setInterval(changeBackground, 10000);
 
         // Clock & Greeting
         function updateTime() {
