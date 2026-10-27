@@ -1,0 +1,11 @@
+{
+  "background_color": "#ffffff",
+  "dir": "ltr",
+  "display": "standalone",
+  "name": "ss launcher",
+  "orientation": "any",
+  "scope": "/",
+  "short_name": "launcher",
+  "start_url": "/https://github.com/saravanaborn2rock-code/sstv/settings/pages",
+  "theme_color": "#ffffff"
+}
